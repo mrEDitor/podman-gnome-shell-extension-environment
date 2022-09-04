@@ -1,0 +1,4 @@
+[submodule "usr/share/gnome-shell/extensions/no-overview@fthx"]
+	path = usr/share/gnome-shell/extensions/no-overview@fthx
+	url = https://github.com/fthx/no-overview.git
+	branch = main

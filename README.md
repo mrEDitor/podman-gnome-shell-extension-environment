@@ -1,5 +1,7 @@
 # 📦 Run GNOME Shell in a Container!
 
+Upstream: https://github.com/Schneegans/gnome-shell-pod
+
 _:information_source: I want to thank [@amezin](https://github.com/amezin) for his awesome contributions, which made it possible to transition the images from Ubuntu to Fedora._
 
 ## The Idea
@@ -24,6 +26,12 @@ Of course, I know that this is exactly what Podman is not designed to be used fo
 - [x] You can install a GNOME Shell extension from host memory and enable it.
 - [x] You can use `xdotool` to interact with the extension.
 - [x] All of this works locally and on the GitHub hosted runners!
+
+### Changes from upstream
+
+- [x] `ImageMagick` and `yarn` packages added.
+- [x] https://github.com/fthx/no-overview/ extension added (as git submodule).
+- [ ] build-only and test-only variants with lesser packages to install.
 
 ## How Does It Work?
 
