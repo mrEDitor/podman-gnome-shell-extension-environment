@@ -13,7 +13,7 @@ COPY usr /usr
 RUN source /etc/os-release &&\
     dnf update -y &&\
     if test $ID -eq 32; then dnf module enable -y nodejs:16; fi &&\
-    dnf install -y xorg-x11-server-Xvfb tigervnc-server gtk4-devel sudo \
+    dnf --nodocs install -y xorg-x11-server-Xvfb tigervnc-server gtk4-devel sudo \
         gnome-session-xsession gnome-extensions-app gnome-terminal \
         ImageMagick xdotool xautomation git yarn &&\
     systemctl unmask systemd-logind.service console-getty.service getty.target &&\
@@ -21,12 +21,11 @@ RUN source /etc/os-release &&\
     systemctl set-default multi-user.target &&\
     systemctl --global disable dbus-broker &&\
     systemctl --global enable dbus-daemon &&\
-    adduser -mUG users,adm,wheel gnomeshell
+    adduser -mUG users,adm,wheel gnomeshell &&\
+    dnf clean all -y &&\
+    rm -rf /var/cache/dnf
 
 # Add the scripts.
 COPY bin /usr/local/bin
-
-# dbus port
-EXPOSE 1234
 
 CMD [ "/usr/sbin/init", "systemd.unified_cgroup_hierarchy=0" ]
