@@ -10,8 +10,9 @@ COPY usr /usr
 # Add the gnomeshell user with no password.
 # Unmask and nodejs:16 are required on Fedora 32.
 # TODO: build-only, test-only variants
-RUN dnf update -y &&\
-    dnf module enable -y nodejs:16 &&\
+RUN source /etc/os-release &&\
+    dnf update -y &&\
+    if test $ID -eq 32; then dnf module enable -y nodejs:16; fi &&\
     dnf install -y xorg-x11-server-Xvfb tigervnc-server gtk4-devel sudo \
         gnome-session-xsession gnome-extensions-app gnome-terminal \
         ImageMagick xdotool xautomation git yarn &&\
