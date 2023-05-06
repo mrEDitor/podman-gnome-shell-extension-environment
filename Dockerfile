@@ -21,9 +21,10 @@ RUN source /etc/os-release &&\
     systemctl set-default multi-user.target &&\
     systemctl --global disable dbus-broker &&\
     systemctl --global enable dbus-daemon &&\
-    adduser -mUG users,adm,wheel gnomeshell &&\
     dnf clean all -y &&\
-    rm -rf /var/cache/dnf
+    rm -rf /var/cache/dnf &&\
+    adduser -mUG users,adm,wheel gnomeshell &&\
+    echo "gnomeshell     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Add the scripts.
 COPY bin /usr/local/bin
